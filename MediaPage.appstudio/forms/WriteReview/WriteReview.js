@@ -1,113 +1,9 @@
-let mediaTitle = 'Finding Nemo'
-let requestURL = "http://www.omdbapi.com/?t=" + mediaTitle + "&apikey=2c27ce9a"
-let netID = 'mbs45316'
-let pw = 'UCTRMX'
-let score = ''
-let count = ''
-let releaseDate = ''
-let season = ''
-let ratings = [10, 9.5, 9.0, 8.5, 8.0, 7.5, 7.0, 6.5, 6.0, 5.5, 5.0, 4.5, 4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.5, 0]
-let currentUser = 'amanda'
-
-function onXHRLoad() {
-    let message = ""
-    let apiData = JSON.parse(this.responseText)
-    
-    lblTitle.value = "Error: Movie doesn't exist."
-
-    lblTitle.value = apiData.Title
-    lblTitle2.value = apiData.Title
-    lblTitle3.value = apiData.Title
-    lblRating.value = "Popcorn Score: " + apiData.imdbRating
-    
-    message = message + "Release Date: "+ apiData.Released + "\n"
-    message = message + "\nRuntime: " + apiData.Runtime + "\n"
-    message = message + "\nGenre: " + apiData.Genre + "\n"
-    message = message + "\nDirector: " + apiData.Director + "\n"
-    message = message + "\nActors: " + apiData.Actors + "\n"
-    message = message + "\nPlot: " + apiData.Plot
-    
-    txtaMedia.value = message
-    
-    imgPoster.src = apiData.Poster
-    
-    score = apiData.imdbRating
-    
-    countPlaceholder = apiData.imdbVotes
-    count = ''
-    if(countPlaceholder) {
-        for (i = 0; i < countPlaceholder.length; i++) {
-            if (countPlaceholder[i] != ',')
-                count = count + countPlaceholder[i]
-        }
-    }
-    
-    count = parseInt(count)
-    releaseDate = apiData.Released
-    
-    if(apiData.Title) {
-        let query = "SELECT title FROM media"
-        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
-        results = JSON.parse(req.responseText)
-    
-        let found = false
-        for (i = 0; i < results.length; i++) {
-            if (mediaTitle == results[i][0]){
-                found = true
-                break 
-            }
-        }
-        if (found == false) {
-            let season = ''
-            let releaseMonth = releaseDate[3] + releaseDate[4] + releaseDate[5]
-    
-            if (releaseMonth == 'Jan' || releaseMonth == 'Feb' || releaseMonth == 'Dec')
-                season = 'Winter'
-            else if (releaseMonth == 'Mar' || releaseMonth == 'Apr' || releaseMonth == 'May')
-                season = 'Spring'
-            else if (releaseMonth == 'Jun' || releaseMonth == 'Jul' || releaseMonth == 'Aug')
-                season = 'Summer'
-            else if (releaseMonth == 'Sep' || releaseMonth == 'Oct' || releaseMonth == 'Nov')
-                season = 'Fall'
-            else 
-                season = "Hasn't been released"
-    
-            query = `INSERT INTO media (title, avg_score, vote_count, season) VALUES ('${mediaTitle}', ${score}, ${count}, '${season}')`
-            req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
-        }
-    }
-}
-
-function callAPI(requestURL) {
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.open('GET', 'https://cors.bridged.cc/' + requestURL)
-    
-    /* Headers */
-    // if you need to set the returned data type, use this line of code: 
-    //xhttp.setRequestHeader('Content-Type', 'application/json')
-    
-    xhttp.addEventListener('load', onXHRLoad)
-    xhttp.send()
-    
-}
-
-function totalScore(mediaTitle) {
-    query = `SELECT avg_score, vote_count FROM media WHERE title = '${mediaTitle}'`
-    req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
-    results = JSON.parse(req.responseText)
-    
-    avg = results[0][0]
-    count = results[0][1]
-    
-    return avg * count
-}
-
-btnSearch.onclick=function() {
-  mediaTitle = inptSearch.value
+btnSearch3.onclick=function() {
+  mediaTitle = inptSearch3.value
   requestURL = "http://www.omdbapi.com/?t=" + mediaTitle + "&apikey=2c27ce9a"
   callAPI(requestURL)
-  inptSearch.value = ''
+  inptSearch3.value = ''
+  
   drpRate.value = 'Rate'
   drpRate2.value = 'Rate'
   drpRate3.value = 'Rate'
@@ -120,65 +16,31 @@ btnSearch.onclick=function() {
         drpRate2.value = results[0]
         drpRate3.value = results[0]
     }
-    
-    query = `SELECT watchlist_status FROM user u INNER JOIN media_rating mr ON u.user_id = mr.user_id INNER JOIN media m ON mr.media_id = m.media_id WHERE m.title = '${mediaTitle}' AND u.username = '${currentUser}' `
-    req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
-    results = JSON.parse(req.responseText)
-    if (results[0] == 'Yes') {
-        btnWatchlist.value = 'Remove'
-        btnWatchlist2.value = 'Remove'
-        btnWatchlist3.value = 'Remove'
-    }
-    else {
-        btnWatchlist.value = 'Add to List'
-        btnWatchlist2.value = 'Add to List'
-        btnWatchlist3.value = 'Add to List'
-    }
-    
+  
+   ChangeForm(Search)
 }
 
-Search.onshow=function(){
+WriteReview.onshow=function(){
     callAPI(requestURL)
-    hmbrMenu.clear()    // clear out choices before adding ones you want
-    hmbrMenu.addItem("Login")
-    hmbrMenu.addItem("Home")
-    hmbrMenu.addItem("Watchlist")
-    hmbrMenu.addItem("Profile")
-    hmbrMenu.addItem("Log Out")
-    drpRate.clear()
+    txtaReview.hidden = True
+    hmbrMenu3.clear()    // clear out choices before adding ones you want
+    hmbrMenu3.addItem("Login")
+    hmbrMenu3.addItem("Home")
+    hmbrMenu3.addItem("Watchlist")
+    hmbrMenu3.addItem("Profile")
+    hmbrMenu3.addItem("Log Out")
+    drpRate3.clear() 
     for (i = 0; i < ratings.length; i++)
-        drpRate.addItem(ratings[i])
-    drpRate.value = 'Rate'
-    drpRate2.value = 'Rate'
-    drpRate3.value = 'Rate'
-    
-    query = `SELECT watchlist_status FROM user u INNER JOIN media_rating mr ON u.user_id = mr.user_id INNER JOIN media m ON mr.media_id = m.media_id WHERE m.title = '${mediaTitle}' AND u.username = '${currentUser}' `
+        drpRate3.addItem(ratings[i])
+    query = `SELECT review FROM user u INNER JOIN media_rating mr ON u.user_id = mr.user_id INNER JOIN media m ON mr.media_id = m.media_id WHERE m.title = '${mediaTitle}' AND u.username = '${currentUser}'`
     req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
     results = JSON.parse(req.responseText)
-    if (results[0] == 'Yes') {
-        btnWatchlist.value = 'Remove'
-        btnWatchlist2.value = 'Remove'
-        btnWatchlist3.value = 'Remove'
-    }
-    else {
-        btnWatchlist.value = 'Add to List'
-        btnWatchlist2.value = 'Add to List'
-        btnWatchlist3.value = 'Add to List'
-    }
-    
-    
-    query = `SELECT rating FROM user u INNER JOIN media_rating mr ON u.user_id = mr.user_id INNER JOIN media m ON mr.media_id = m.media_id WHERE m.title = '${mediaTitle}' AND u.username = '${currentUser}' `
-    req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
-    results = JSON.parse(req.responseText)
-    if (results[0] != '' && results.length == 1) {
-        drpRate.value = results[0]
-        drpRate2.value = results[0]
-        drpRate3.value = results[0]
-    }
+    inptMyReview.value = results[0]
+    txtaReview2.value = results[0]
 }
 
 
-hmbrMenu.onclick=function(s) {
+hmbrMenu3.onclick=function(s) {
     if (typeof(s) == "object") {
        return
     }
@@ -198,10 +60,11 @@ hmbrMenu.onclick=function(s) {
         case "logOut":
             ChangeForm(logOut)
             break
+
     }
 }
 
-drpRate.onclick=function(s){
+drpRate3.onclick=function(s){
   
   if (typeof(s) == "object") {
     return                     
@@ -224,7 +87,7 @@ drpRate.onclick=function(s){
         
             media_id = results[0]
         
-            query = `INSERT INTO media_rating (user_id, media_id, rating) VALUES (${user_id}, ${media_id}, ${s})`
+            query = `INSERT INTO media_rating (user_id, media_id, rating) VALUES (${user_id}, ${media_id}, '${s}')`
             req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
             drpRate.value = s
             drpRate2.value = s
@@ -244,7 +107,7 @@ drpRate.onclick=function(s){
         
             media_id = results[0]   
         
-            query = `UPDATE media_rating SET rating = ${s} WHERE user_id = ${user_id} AND media_id = ${media_id}`
+            query = `UPDATE media_rating SET rating = '${s}' WHERE user_id = ${user_id} AND media_id = ${media_id}`
             req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
             drpRate.value = s
             drpRate2.value = s
@@ -253,11 +116,64 @@ drpRate.onclick=function(s){
    }
 }
 
-lblReview.onclick=function(){
+lblTitle3.onclick=function(){
+  ChangeForm(Search)
+}
+
+lblReadReviews.onclick=function(){
   ChangeForm(Review)
 }
 
-btnWatchlist.onclick=function(){
+btnUpdate.onclick=function(){
+  txtaReview2.value = inptMyReview.value
+}
+
+btnSubmit2.onclick=function(){
+    completeReview = inptMyReview.value
+    query = `SELECT mr.user_id, mr.media_id FROM user u INNER JOIN media_rating mr ON u.user_id = mr.user_id INNER JOIN media m ON mr.media_id = m.media_id WHERE m.title = '${mediaTitle}' AND u.username = '${currentUser}'`
+    req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+    results = JSON.parse(req.responseText)
+    if(results.length == 0) {
+        
+        query = `SELECT user_id FROM user WHERE username = '${currentUser}'`
+        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+        results = JSON.parse(req.responseText)
+        
+        user_id = results[0]
+        
+        query = `SELECT media_id FROM media WHERE title = '${mediaTitle}'`
+        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+        results = JSON.parse(req.responseText)
+        
+        media_id = results[0]
+        
+        query = `INSERT INTO media_rating (user_id, media_id, review) VALUES (${user_id}, ${media_id}, '${completeReview}')`
+        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+        txtaReview2.value = 'Your review has been submitted.'
+    }
+    else {
+        
+        query = `SELECT user_id FROM user WHERE username = '${currentUser}'`
+        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+        results = JSON.parse(req.responseText)
+        
+        user_id = results[0]
+        
+        query = `SELECT media_id FROM media WHERE title = '${mediaTitle}'`
+        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+        results = JSON.parse(req.responseText)
+        
+        media_id = results[0]   
+        
+        query = `UPDATE media_rating SET review = '${completeReview}' WHERE user_id = ${user_id} AND media_id = ${media_id}`
+        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+        query = `UPDATE media_rating SET date = Now() WHERE user_id = ${user_id} AND media_id = ${media_id}`
+        req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)
+        txtaReview2.value = 'Your review has been submitted.'
+    }
+}
+
+btnWatchlist3.onclick=function(){
     if (btnWatchlist.value == 'Add to List') {
         query = `SELECT mr.user_id, mr.media_id FROM user u INNER JOIN media_rating mr ON u.user_id = mr.user_id INNER JOIN media m ON mr.media_id = m.media_id WHERE m.title = '${mediaTitle}' AND u.username = '${currentUser}' `
         req = Ajax("https://ormond.creighton.edu/courses/375/ajax-connection.php", "POST", "host=ormond.creighton.edu&user=" + netID + "&pass=" + pw + "&database=375groupb2&query=" + query)

@@ -10,7 +10,8 @@
       "PWA_Manifest": null,
       "androidAlias": "key0",
       "androidAliasPassword": "mypassword",
-      "androidKeystore": "certificates/android.p12",
+      "androidDname": "cn=myname, ou=mygroup, o=mycompany, c=mycountry",
+      "androidKeystore": "certificates/android.keystore",
       "androidKeystorePassword": "mypassword",
       "background": "",
       "backgroundimage": "",
@@ -22,38 +23,22 @@
           "!type": "External",
           "file": [
             "forms",
-            "Search",
-            "Search.json"
+            "Form1",
+            "Form1.json"
           ]
         },
         {
           "!type": "External",
           "file": [
             "forms",
-            "Review",
-            "Review.json"
-          ]
-        },
-        {
-          "!type": "External",
-          "file": [
-            "forms",
-            "WriteReview",
-            "WriteReview.json"
-          ]
-        },
-        {
-          "!type": "External",
-          "file": [
-            "forms",
-            "Watchlist",
-            "Watchlist.json"
+            "Menu",
+            "Menu.json"
           ]
         }
       ],
       "configxml": null,
       "contentSecurityPolicy": "",
-      "copyright": "copyright 2021 ABC Company",
+      "copyright": "copyright 2020 ABC Company",
       "cordovaBuild": null,
       "cordovaCommand": "emulate android",
       "dashboardAccess": false,
@@ -70,13 +55,13 @@
       "eslintRules": null,
       "expanded_pmp": null,
       "extraheaders": null,
-      "firstform": "Search",
+      "firstform": "Form1",
       "fontFamily": "system",
       "googlePlayKey": "certificates/google.json",
       "googlePlayTrack": "production",
       "homescreenTitle": "",
       "icon": "nsb/images/192.png",
-      "id": "MediaPage",
+      "id": "Project1",
       "iosDevP12": "certificates/ios_development.p12",
       "iosDevP12Password": "mypassword",
       "iosDevelopment": "certificates/development.mobileprovision",
@@ -111,7 +96,7 @@
       "style": "",
       "styleheaders": null,
       "theme": "a",
-      "title": "MediaPage",
+      "title": "Project1",
       "useStrict": "",
       "version": "1.0.0",
       "viewportFit": "cover",

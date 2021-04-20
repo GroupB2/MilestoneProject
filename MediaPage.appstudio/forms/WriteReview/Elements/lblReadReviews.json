@@ -1,6 +1,6 @@
 {
   "!type": "Label_bs4",
-  "appearance": "dark",
+  "appearance": "info",
   "backgroundColor": "",
   "borderRadius": "0",
   "bottom": "auto",
@@ -17,9 +17,9 @@
   "fontWeight": "",
   "height": 32,
   "hidden": "",
-  "id": "lblRating",
+  "id": "lblReadReviews",
   "labelStyle": "text",
-  "left": 53,
+  "left": 91,
   "mAll": "",
   "mBottom": "",
   "mLeft": "",
@@ -42,7 +42,7 @@
   "right": "auto",
   "script": "",
   "style": "text-align:center;",
-  "top": 212,
-  "value": "",
-  "width": 218
+  "top": 104,
+  "value": "<u>Read Reviews</u>",
+  "width": 168
 }
