@@ -14,90 +14,117 @@
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "imgPoster.json"
+        "lblTitle2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "lblTitle.json"
+        "lblWriteReview.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "txtaMedia.json"
+        "hmbrMenu2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "lblRating.json"
+        "inptSearch2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "hmbrMenu.json"
+        "btnSearch2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "inptSearch.json"
+        "btnWatchlist2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "btnSearch.json"
+        "drpRate2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "btnWatchlist.json"
+        "btnSubmit.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "lblReview.json"
+        "selNames.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Review",
         "Elements",
-        "drpRate.json"
+        "inptUserReview.json"
+      ]
+    },
+    {
+      "!type": "External",
+      "file": [
+        "forms",
+        "Review",
+        "Elements",
+        "txtaReview.json"
+      ]
+    },
+    {
+      "!type": "External",
+      "file": [
+        "forms",
+        "Review",
+        "Elements",
+        "lblReset.json"
+      ]
+    },
+    {
+      "!type": "External",
+      "file": [
+        "forms",
+        "Review",
+        "Elements",
+        "btnReviewerProfile.json"
       ]
     }
   ],
@@ -107,7 +134,7 @@
   "expanded_pmp": null,
   "fullScreen": "true",
   "height": 460,
-  "id": "Search",
+  "id": "Review",
   "language": "JavaScript",
   "left": "0",
   "locked": false,
@@ -115,7 +142,7 @@
   "onhide": "",
   "onkeypress": "",
   "onresize": "",
-  "onshow": "Search.onshow()",
+  "onshow": "",
   "openMode": "none",
   "parentForm": "",
   "position": "absolute",

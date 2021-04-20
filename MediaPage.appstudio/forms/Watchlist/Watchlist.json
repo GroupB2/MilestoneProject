@@ -14,90 +14,81 @@
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "imgPoster.json"
+        "lblTitle4.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "lblTitle.json"
+        "hmbrMenu4.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "txtaMedia.json"
+        "inptSearch4.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "lblRating.json"
+        "btnSearch4.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "hmbrMenu.json"
+        "btnSubmit3.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "inptSearch.json"
+        "selWatchlist.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "btnSearch.json"
+        "inptWatchlistMedia.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "btnWatchlist.json"
+        "lblReset2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "Watchlist",
         "Elements",
-        "lblReview.json"
-      ]
-    },
-    {
-      "!type": "External",
-      "file": [
-        "forms",
-        "Search",
-        "Elements",
-        "drpRate.json"
+        "btnRemove.json"
       ]
     }
   ],
@@ -107,7 +98,7 @@
   "expanded_pmp": null,
   "fullScreen": "true",
   "height": 460,
-  "id": "Search",
+  "id": "Watchlist",
   "language": "JavaScript",
   "left": "0",
   "locked": false,
@@ -115,7 +106,7 @@
   "onhide": "",
   "onkeypress": "",
   "onresize": "",
-  "onshow": "Search.onshow()",
+  "onshow": "",
   "openMode": "none",
   "parentForm": "",
   "position": "absolute",

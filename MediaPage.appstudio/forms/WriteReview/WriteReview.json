@@ -14,90 +14,99 @@
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "imgPoster.json"
+        "lblTitle3.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "lblTitle.json"
+        "lblReadReviews.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "txtaMedia.json"
+        "hmbrMenu3.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "lblRating.json"
+        "inptSearch3.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "hmbrMenu.json"
+        "btnSearch3.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "inptSearch.json"
+        "btnWatchlist3.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "btnSearch.json"
+        "drpRate3.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "btnWatchlist.json"
+        "btnSubmit2.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "lblReview.json"
+        "inptMyReview.json"
       ]
     },
     {
       "!type": "External",
       "file": [
         "forms",
-        "Search",
+        "WriteReview",
         "Elements",
-        "drpRate.json"
+        "txtaReview2.json"
+      ]
+    },
+    {
+      "!type": "External",
+      "file": [
+        "forms",
+        "WriteReview",
+        "Elements",
+        "btnUpdate.json"
       ]
     }
   ],
@@ -107,7 +116,7 @@
   "expanded_pmp": null,
   "fullScreen": "true",
   "height": 460,
-  "id": "Search",
+  "id": "WriteReview",
   "language": "JavaScript",
   "left": "0",
   "locked": false,
@@ -115,7 +124,7 @@
   "onhide": "",
   "onkeypress": "",
   "onresize": "",
-  "onshow": "Search.onshow()",
+  "onshow": "",
   "openMode": "none",
   "parentForm": "",
   "position": "absolute",
